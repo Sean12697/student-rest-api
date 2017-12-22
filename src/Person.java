@@ -52,4 +52,17 @@ public class Person {
 	public void setPostcode(String postcode) {
 		this.postcode = postcode;
 	}
+	
+	// Function I wrote to return type (Person, Student, any class that inherits it)
+	public String type() {
+		StringBuffer type = new StringBuffer("");
+		String ref = toString();
+		boolean end = false; 
+		for (int i = 0; i < ref.length() && !end; i++) {
+			char current = ref.charAt(i);
+			if (current == '@') {
+				end = true;
+			} else { type.append(current); }
+		} return type.toString();
+	}
 }
