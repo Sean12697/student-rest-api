@@ -1,3 +1,9 @@
+/**  
+* Person.java a simple class which encapsulates the properties that a Person Object requires (including a constructor and getters/setters)
+* @author  Sean O'Mahoney - 16042079
+* @version 1.0 
+* @see Class: Tester
+*/
 public class Person {
 	private String name;
 	private String gender;

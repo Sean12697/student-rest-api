@@ -1,3 +1,9 @@
+/**  
+* Student.java a simple class which encapsulates the properties that a Student Object requires (including a constructor and getters/setters)
+* @author  Sean O'Mahoney - 16042079
+* @version 1.0 
+* @see Class: Tester
+*/
 public class Student extends Person {
 	private int studentNumber;
 	private String courseTitle;

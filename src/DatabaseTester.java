@@ -1,6 +1,12 @@
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**  
+* DatabaseTester.java a class that connects to the studentdb.sqlite file and performs simple CRUD opperations
+* @author  Sean O'Mahoney - 16042079
+* @version 1.0 
+* @see Class: StudentDAO
+*/
 public class DatabaseTester {
 
 	public static StudentDAO dao = new StudentDAO();

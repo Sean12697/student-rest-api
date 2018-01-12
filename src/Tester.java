@@ -1,4 +1,9 @@
-
+/**  
+* Tester.java a simple class which creates instances of the Person and Student class, ensuring they are compatible in the same array and can be called
+* @author  Sean O'Mahoney - 16042079
+* @version 1.0 
+* @see Class: Person, Student
+*/
 public class Tester {
 
 	public static void main(String[] args) {

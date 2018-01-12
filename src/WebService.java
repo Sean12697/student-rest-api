@@ -17,9 +17,13 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 
+/**  
+* WebService.java a class that starts the RESTful API server on the localhost on port 8005
+* @author  Sean O'Mahoney - 16042079
+* @version 1.0 
+* @see Class: WebServiceTester
+*/
 public class WebService {
-
-	public static String accessKey = "123456";
 
 	public static void main(String[] args) throws Exception {
 		HttpServer server = HttpServer.create(new InetSocketAddress(8005), 0);
@@ -310,14 +314,15 @@ public class WebService {
 			while ((line = in.readLine()) != null) {
 				request += SQLescape(line);
 			}
+
 			Map<String, String> parms = queryToMap(request);
 
 			if (request.contains("username") && request.contains("password")) {
 				String user = parms.get("username");
 				String password = parms.get("password");
 				String check = parms.get("register");
+				if (check == null) check = "off";
 				if (!check.equals("on")) {
-					// ----------------------------- ERROR -----------------------------
 					String c = "";
 					try {
 						c = dao.checkLoginCredentials(user, password);
@@ -332,7 +337,6 @@ public class WebService {
 						response = "Hello " + user + ", your login token is " + c;
 						responseCode = 200;
 					}
-					// ----------------------------- ERROR -----------------------------
 				} else {
 					try {
 						if (dao.uniqueUsername(user)) {
@@ -391,13 +395,10 @@ public class WebService {
 		Pattern date = Pattern
 				.compile("([0-2][0-9]|[3][0-1])-([0][1-9]|[1][0-2])-([1][9][0-9][0-9]|[2][0][0-9][0-9])$");
 		if (!Pattern.matches("^((?!0-9\\W)[a-zA-Z\\s\\x27]+)*$", s.getName())) {
-			return false; // ^ Does not contain number or non-word character,
-							// but does a letter, space or apostrophe, globally,
-							// any illegal characters will return false
+			return false; // ^ Does not contain number or non-word character, but does a letter, space or apostrophe, globally, any illegal characters will return false
 		}
 		if (!Pattern.matches("[M/F/m/f]$", s.getGender())) {
-			return false; // s.getGender().equals("M") ||
-							// s.getGender().equals("F")
+			return false;
 		}
 		if (!date.matcher(s.getDob()).matches()) {
 			return false;
@@ -417,8 +418,7 @@ public class WebService {
 		if (!Pattern.matches("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9]+\\.[a-zA-Z0-9]+\\.{0,1}[a-zA-Z0-9]*$",
 				s.getEmail())) {
 			return false;
-		}
-		return true;
+		} return true;
 	}
 
 	public static String SQLescape(String s) {
